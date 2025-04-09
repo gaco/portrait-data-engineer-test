@@ -2,8 +2,6 @@
 
 ## Overview
 
-At [Your Company], we specialize in providing software solutions to improve healthcare workflows. As part of our mission, we maintain an Electronic Health Record (EHR) system that helps healthcare providers manage patient data efficiently. We are seeking a data engineer to design, build, and maintain pipelines that help analyze this valuable data.
-
 In this challenge, you will be asked to build a data pipeline that processes and transforms a sample dataset extracted from our EHR system. Your task is to design an ETL pipeline, clean and transform the data, and answer key business questions that would help healthcare professionals make better data-driven decisions.
 
 ## Setup
