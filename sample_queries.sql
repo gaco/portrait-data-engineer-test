@@ -11,7 +11,7 @@ SELECT 'prescriptions', COUNT(*) FROM prescriptions;
 
 -- 2. Patient registration overview
 SELECT 
-    DATE_TRUNC('month', registration_date) as registration_month,
+    DATE_TRUNC('month', registration_date::timestamp) as registration_month,
     COUNT(*) as new_patients
 FROM patients
 GROUP BY registration_month
