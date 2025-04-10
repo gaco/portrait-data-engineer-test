@@ -192,3 +192,5 @@ Please submit your code and documentation in a GitHub repository or any version-
 
 If you used a different database solution than the provided PostgreSQL setup, please ensure that all data files and scripts are included and can be easily run on any local environment.
 
+Alternatively, you may submit your solution as a zip folder via email if you prefer this method.
+
