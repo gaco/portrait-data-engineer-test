@@ -1,0 +1,13 @@
+# .dbt/profiles.yml
+healthcare:
+  outputs:
+    dev:
+      dbname: healthcare
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: analytics
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev

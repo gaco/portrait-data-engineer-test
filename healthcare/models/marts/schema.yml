@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: appointment_distribution_by_age_group
+    description: "Most common appointment types by age group"
+    columns:
+      - name: age_group
+        description: "Patient age group"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [ '0-18', '19-30', '31-50', '51-70', '71+', 'Unknown' ]
+      - name: appointment_type
+        description: "Type of appointment"
+      - name: total
+        description: "Total number of appointments"
+        tests:
+          - not_null
+
+  - name: appointment_frequency_by_patient_type
+    description: "Appointment count grouped by patient type"
+    columns:
+      - name: patient_type
+        description: "Type of patient (New, Regular, Long-term)"
+      - name: total_appointments
+        description: "Total number of appointments"
+
+
+  - name: emergency_visits_by_day
+    description: "Emergency appointment count per day of the week"
+    columns:
+      - name: day_of_week
+        description: "Day of the week"
+      - name: emergency_visits
+        description: "Total number of emergency visits"
+
+  - name: patient_distribution_by_age_group
+    description: "Patient distribution by age group"
+    columns:
+      - name: age_group
+        description: "Patient age group"
+      - name: num_patients
+        description: "Total number of patients"
+        tests:
+          - not_null
+
+  - name: prescription_appointment_correlation
+    description: "Correlation between prescription frequency and appointment count"
+    columns:
+      - name: prescription_frequency
+        description: "Prescription type (First-time or Repeat)"
+      - name: avg_appointments
+        description: "Average number of appointments"
+
+  - name: prescription_count_per_patient
+    description: "Number of prescriptions per patient"
+    columns:
+      - name: patient_id
+        description: "Patient ID"
+      - name: prescriptions_count
+        description: "Total prescriptions for the patient"
+
+  - name: prescription_distribution_by_age_group
+    description: "Prescription distribution by medication category and age group"
+    columns:
+      - name: age_group
+        description: "Patient age group"
+      - name: category
+        description: "Medication category"
+      - name: total
+        description: "Total prescriptions in the category"
+
+  - name: prescription_frequency_trend
+    description: "Trend of prescription types over time"
+    columns:
+      - name: month
+        description: "Month of prescription"
+      - name: prescription_frequency
+        description: "Prescription type"
+      - name: total
+        description: "Total prescriptions"
+
+  - name: prescription_trend_by_month
+    description: "Total prescription volume per month"
+    columns:
+      - name: month
+        description: "Month of prescription"
+      - name: total_prescriptions
+        description: "Total number of prescriptions"

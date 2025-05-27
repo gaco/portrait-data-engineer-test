@@ -6,7 +6,7 @@ import os
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/healthcare')
 
 # Directory containing CSV files
-data_dir = 'sample_datasets'
+data_dir = 'source_simulator/sample_datasets'
 
 # List of tables and their corresponding CSV files
 tables = {

@@ -1,0 +1,94 @@
+
+version: 2
+
+
+sources:
+  - name: public
+    schema: public
+    tables:
+      - name: patients
+      - name: appointments
+      - name: prescriptions
+      - name: providers
+
+models:
+  - name: stg_patients
+    description: "Patient data with age group and patient type classification"
+    columns:
+      - name: patient_id
+        description: "Unique patient identifier"
+        tests: [not_null, unique]
+      - name: name
+        description: "Patient name"
+      - name: age
+        description: "Patient age in years"
+      - name: gender
+        description: "Patient gender"
+        tests:
+          - accepted_values:
+              values: [ 'Male', 'Female' ]
+      - name: registration_date
+        description: "Patient registration date"
+      - name: age_group
+        description: "Calculated age group"
+      - name: patient_type
+        description: "Patient classification by time since registration"
+        tests:
+          - accepted_values:
+              values: [ 'New', 'Regular', 'Long-Term' ]
+
+  - name: stg_appointments
+    description: "Appointments enriched with day of week and time since last appointment"
+    columns:
+      - name: appointment_id
+        description: "Unique appointment ID"
+        tests: [not_null, unique]
+      - name: patient_id
+        description: "Related patient ID"
+      - name: appointment_date
+        description: "Date of the appointment"
+      - name: appointment_type
+        description: "Type of appointment"
+        tests:
+          - accepted_values:
+              values: [ 'Checkup', 'Emergency', 'Consultation' ]
+      - name: provider_id
+        description: "Provider handling the appointment"
+      - name: day_of_week
+        description: "Day of week of appointment"
+        tests:
+        - accepted_values:
+            values: ['Sunday', 'Tuesday', 'Friday', 'Wednesday', 'Thursday', 'Monday', 'Saturday']
+      - name: days_since_last_appointment
+        description: "Days since the patient's previous appointment"
+
+  - name: stg_prescriptions
+    description: "Prescriptions with medication category and frequency"
+    columns:
+      - name: prescription_id
+        description: "Unique prescription ID"
+        tests: [not_null, unique]
+      - name: patient_id
+        description: "Related patient ID"
+      - name: medication_name
+        description: "Name of prescribed medication"
+      - name: prescription_date
+        description: "Date of the prescription"
+      - name: medication_category
+        description: "Categorized medication topics (array)"
+      - name: prescription_frequency
+        description: "First-time or repeat prescription"
+        tests:
+          - accepted_values:
+              values: [ 'First-time', 'Repeat' ]
+
+  - name: stg_providers
+    description: "Providers data with specialty"
+    columns:
+      - name: provider_id
+        description: "Unique provider ID"
+        tests: [not_null, unique]
+      - name: name
+        description: "Provider name"
+      - name: specialty
+        description: "Provider specialty"

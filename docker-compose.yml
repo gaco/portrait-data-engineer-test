@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  destination:
+  healthcare-db:
     image: postgres:15
     environment:
       POSTGRES_USER: postgres
@@ -12,5 +12,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  streamlit:
+    build:
+      context: streamlit_app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - healthcare-db
+    environment:
+      - DB_HOST=healthcare-db
+      - DB_NAME=healthcare
+      - DB_USER=postgres
+      - DB_PASS=postgres
+
 volumes:
-  postgres_data: 
+  postgres_data:
