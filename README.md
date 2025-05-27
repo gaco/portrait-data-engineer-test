@@ -1,6 +1,22 @@
 # Healthcare Analytics Pipeline
 
-## Data Pipeline Documentation:
+<!-- TOC -->
+* [Healthcare Analytics Pipeline](#healthcare-analytics-pipeline)
+  * [Data Pipeline Structure:](#data-pipeline-structure)
+    * [Overview](#overview)
+    * [Limitations](#limitations-)
+    * [Layer Structure](#layer-structure)
+    * [Data Quality](#data-quality)
+    * [Technical Stack](#technical-stack)
+  * [Project Setup](#project-setup)
+  * [Load and Run Pipeline](#load-and-run-pipeline)
+    * [1. Run all models.](#1-run-all-models)
+    * [2. Run tests against your models to validate your data](#2-run-tests-against-your-models-to-validate-your-data)
+    * [3. Generate DBT documentation](#3-generate-dbt-documentation)
+    * [4. Dashboard.](#4-dashboard)
+  * [Conclusions](#conclusions)
+<!-- TOC -->
+## Data Pipeline Structure:
 
 ### Overview
 
@@ -23,7 +39,7 @@ This DBT project implements a **Medallion architecture** (Bronze → Silver → 
    - Full pipeline lineage, documentation, and testing
 
 
-### Structure
+### Layer Structure
 
 - **Bronze Layer**: Raw data loaded from CSVs into PostgreSQL `public` schema
 - **Silver Layer (`staging/`)**: Cleaned and enriched models:
@@ -53,7 +69,7 @@ This DBT project implements a **Medallion architecture** (Bronze → Silver → 
 
 ---
 
-### Project Setup
+## Project Setup
 1. `pip3 install -r requirements`
 
 2. `dbt init healthcare` (not required as healthcare project already exists)
@@ -75,9 +91,9 @@ You should see something like this:
 21:00:13  All checks passed!
 ```
 
-### Load and Run Pipeline
+## Load and Run Pipeline
 
-#### 1. Run all models.
+### 1. Run all models.
 
 `dbt run`
 
@@ -105,20 +121,20 @@ You should see something like this:
 > What if only need do a preview in the data before loading?
 > `dbt show --select stg_prescriptions --full-refresh`
 
-#### 2. Run tests against your models to validate your data
+### 2. Run tests against your models to validate your data
 
 `dbt test`
 
 - Custom SQL tests are implemented in the `tests/` folder
 - Built-in dbt-tests for unique, not_null and accepted_values in `healthcare/models/staging/schema.yml` and `healthcare/models/marts/schema.yml` files.
 
-#### 3. Generate DBT documentation
+### 3. Generate DBT documentation
 
 `dbt docs generate && dbt docs serve`
 
 - Available at: http://localhost:8080/
 
-#### 4. Dashboard.
+### 4. Dashboard.
 - Built using Streamlit and generated with docker composer at: http://localhost:8501/
 - Connected to the PostgreSQL database using SQLAlchemy
 - Displays insights from Golden layer
@@ -126,7 +142,7 @@ You should see something like this:
 > It can also be executed manually by running: `streamlit run streamlit_app/healthcare_dashboard.py`
 ntment
 
-### Conclusions
+## Conclusions
 
 - Patients 51–70 and 71+ have the highest appointment counts, particularly for checkups.
 - Emergency appointments has a spike on Friday.
