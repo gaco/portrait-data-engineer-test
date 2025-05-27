@@ -140,7 +140,12 @@ You should see something like this:
 - Displays insights from Golden layer
 
 > It can also be executed manually by running: `streamlit run streamlit_app/healthcare_dashboard.py`
-ntment
+
+- Below images of the analysis in case for some reason the dashboard does not open:
+![patient_analysis.png](imgs/patient_analysis.png)
+![appointment_analysis.png](imgs/appointment_analysis.png)
+![prescription_analysis.png](imgs/prescription_analysis.png)
+![extra.png](imgs/extra.png)
 
 ## Conclusions
 
